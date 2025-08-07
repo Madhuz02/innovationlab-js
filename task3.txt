@@ -1,0 +1,94 @@
+console.log("===== Task 1: Destructuring, Notation & Iteration =====");
+
+// Sample data
+const users = [
+  {
+    id: 1,
+    name: "Madhu",
+    contact: {
+      email: "madhu@example.com",
+      phone: "9876543210"
+    }
+  },
+  {
+    id: 2,
+    name: "Lavanya",
+    contact: {
+      email: "lavanya@example.com",
+      phone: "9123456780"
+    }
+  }
+];
+
+ 1. Destructuring nested objects
+users.forEach(({ name, contact: { email, phone } }) => {
+  console.log(`Name: ${name}, Email: ${email}, Phone: ${phone}`);
+});
+
+ 2. Dot vs Bracket Notation
+console.log("Dot Notation:", users[0].name);
+console.log("Bracket Notation:", users[0]["contact"]["email"]);
+
+ 3. Iterate using keys/values/entries
+const sampleUser = users[0];
+console.log("\nIterating with Object.keys():");
+Object.keys(sampleUser).forEach(key => console.log(`${key} => ${sampleUser[key]}`));
+
+console.log("\nIterating with Object.entries():");
+Object.entries(sampleUser).forEach(([key, value]) => {
+  console.log(`${key} =>`, value);
+});
+
+console.log("\n===== Task 2: Complex Data & Parameter Handling =====");
+
+ Function with default parameters
+function createUser(name = "Guest", email = "guest@example.com") {
+  return { name, email };
+}
+console.log(createUser()); // Default
+console.log(createUser("Rohith", "rohith@example.com")); // Custom
+
+ Rest parameters: add multiple users
+function addUsers(...newUsers) {
+  users.push(...newUsers);
+}
+addUsers(
+  createUser("Kavi", "kavi@example.com"),
+  createUser("Karthik", "karthik@example.com")
+);
+console.log("\nAll Users After Adding:");
+users.forEach(user => console.log(user));
+
+const admins = [
+  createUser("Admin1", "admin1@example.com"),
+  createUser("Admin2", "admin2@example.com")
+];
+const combinedUsers = [...users, ...admins];
+console.log("\nCombined User List:");
+combinedUsers.forEach(user => console.log(user));
+
+const clonedUser = { ...users[0] };
+console.log("\nCloned User:", clonedUser);
+
+function displayContact({ name, contact: { phone } }) {
+  console.log(`${name}'s phone is ${phone}`);
+}
+displayContact(users[0]);
+
+console.log("\n===== Task 3: Function Context & Advanced Calls =====");
+
+function showDetails(role) {
+  console.log(`${this.name} (${this.email}) - Role: ${role}`);
+}
+
+const employee1 = { name: "Ram", email: "ram@example.com" };
+const employee2 = { name: "Sita", email: "sita@example.com" };
+
+showDetails.call(employee1, "Manager");
+
+showDetails.apply(employee2, ["Developer"]);
+
+const boundFn = showDetails.bind(employee1, "CEO");
+boundFn();
+
+console.log("\n All tasks completed with output.");

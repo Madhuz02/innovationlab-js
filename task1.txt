@@ -1,0 +1,105 @@
+let obj = { name: "Madhu" };
+console.log(obj.name); 
+
+let obj = { "full name": "Madhu R", 123: "value", keyName: "value" };
+console.log(obj["full name"]);     
+console.log(obj["123"]);           
+let key = "keyName";
+console.log(obj[key]);  
+
+let key = "name";
+console.log(obj[key]);
+
+let obj = { "full name": "Rohith" };
+console.log(obj["full name"]);
+
+let obj = { "full name": "Rohith" };
+console.log(obj["full name"]);
+
+for (let key in obj) {
+console.log(obj[key]); 
+}
+
+const person = { name: "Madhu", age: 21, city: "Coimbatore" };
+
+for (let key in person) {
+  console.log(key, ":", person[key]);
+}
+
+
+for (let key in person) {
+  if (person.hasOwnProperty(key)) {
+    console.log(key, ":", person[key]);
+  }
+}
+
+Object.keys(person).forEach(key => {
+  console.log(key, ":", person[key]);
+});
+
+Object.values(person).forEach(value => {
+  console.log("Value:", value);
+});
+
+Object.entries(person).forEach(([key, value]) => {
+  console.log(`${key}: ${value}`);
+});
+
+Object.entries(person).forEach(([key, value]) => {
+  console.log(`${key}: ${value}`);
+});
+
+for (let [key, value] of Object.entries(person)) {
+  console.log(`${key}: ${value}`);
+}
+
+
+function sum(...numbers) {
+  return numbers.reduce((total, num) => total + num, 0);
+}
+
+console.log(sum(1, 2, 3));       
+console.log(sum(4, 5, 6, 7, 8)); 
+
+
+let nums = [1, 2, 3];
+console.log(Math.max(...nums));
+
+let arr1 = [1, 2];
+let arr2 = [3, 4];
+let combined = [...arr1, ...arr2]; 
+console.log(combined); 
+
+let obj1 = { a: 1 };
+let obj2 = { b: 2 };
+let merged = { ...obj1, ...obj2 };
+console.log(merged); 
+
+function greet(greeting, punctuation) {
+  console.log(`${greeting}, ${this.name}${punctuation}`);
+}
+
+const person = { name: "Madhu" };
+greet.call(person, "Hello", "!");  
+greet.apply(person, ["Hi", "."]); 
+
+
+const person = {
+  name: "Madhu",
+  greet() {
+    console.log(`Hello, I’m ${this.name}`);
+  }
+};
+
+const greet = person.greet;
+greet(); 
+const boundGreet = person.greet.bind(person);
+boundGreet(); 
+
+function multiply(a, b) {
+  return a * b;
+}
+
+const double = multiply.bind(null, 2);
+console.log(double(5)); 
+ 

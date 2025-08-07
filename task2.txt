@@ -1,0 +1,83 @@
+ 1. Create an array of contact objects
+let contacts = [
+  {
+    name: "Madhu",
+    phone: "9876543210",
+    email: "madhu@example.com",
+    display() {
+      console.log(`Name: ${this.name}, Phone: ${this.phone}, Email: ${this.email}`);
+    }
+  },
+  {
+    name: "Lavanya",
+    phone: "9123456780",
+    email: "lavanya@example.com",
+    display() {
+      console.log(`Name: ${this.name}, Phone: ${this.phone}, Email: ${this.email}`);
+    }
+  }
+];
+
+ 2. Destructuring inside a method
+function showDestructuredContact({ name, phone, email }) {
+  console.log(`(Destructured) ${name} | ${phone} | ${email}`);
+}
+showDestructuredContact(contacts[0]);
+
+ 3. Access properties using dot and bracket notation
+console.log("Dot:", contacts[0].name);        // Dot notation
+console.log("Bracket:", contacts[0]["email"]); // Bracket notation
+
+ 4. Iterate and print all contacts
+console.log("\nAll Contact Details:");
+contacts.forEach(contact => contact.display());
+
+ 5. Rest Parameters: Add multiple contacts
+function addContacts(...newContacts) {
+  contacts.push(...newContacts);
+}
+addContacts(
+  {
+    name: "Rohith",
+    phone: "9012345678",
+    email: "rohith@example.com",
+    display() {
+      console.log(`Name: ${this.name}, Phone: ${this.phone}, Email: ${this.email}`);
+    }
+  }
+);
+console.log("\nAfter adding new contact:");
+contacts.forEach(contact => contact.display());
+
+ 6. Spread Operator: Merge contact arrays
+let moreContacts = [
+  {
+    name: "Kavi",
+    phone: "8000000001",
+    email: "kavi@example.com",
+    display() {
+      console.log(`Name: ${this.name}, Phone: ${this.phone}, Email: ${this.email}`);
+    }
+  }
+];
+let allContacts = [...contacts, ...moreContacts];
+console.log("\nMerged Contacts:");
+allContacts.forEach(contact => contact.display());
+
+ 7. Demonstrate call(), apply(), bind()
+let displayFn = function(city) {
+  console.log(`Name: ${this.name}, Email: ${this.email}, City: ${city}`);
+};
+
+let contactA = { name: "Karthik", email: "karthik@example.com" };
+let contactB = { name: "Priya", email: "priya@example.com" };
+
+console.log("\nUsing call:");
+displayFn.call(contactA, "Coimbatore");
+
+console.log("Using apply:");
+displayFn.apply(contactB, ["Chennai"]);
+
+console.log("Using bind:");
+let boundFn = displayFn.bind(contactA, "Bangalore");
+boundFn();
